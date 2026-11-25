@@ -68,3 +68,16 @@ button:hover {
     text-decoration: line-through;
     color: #888;
 }
+.delete-button {
+    background: #dc3545;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+.delete-button:hover {
+    background: #b02a37;
+}
+
+#task-list li span {
+    flex: 1;
+}

@@ -30,7 +30,13 @@ function toggleTask(id) {
     }
     return tasks;
 }
+function deleteTask(id) {
+    const tasks = loadTasks();
+    const updatedTasks = tasks.filter(task => task.id !== id);
 
+    saveTasks(updatedTasks);
+    return updatedTasks;
+}
 function render() {
     list.innerHTML = '';
     const tasks = loadTasks();
@@ -51,9 +57,20 @@ function render() {
         const span = document.createElement('span');
         span.textContent = task.text;
 
-        li.appendChild(checkbox);
-        li.appendChild(span);
-        list.appendChild(li);
+        const deleteButton = document.createElement('button');
+deleteButton.type = 'button';
+deleteButton.className = 'delete-button';
+deleteButton.textContent = 'Удалить';
+
+deleteButton.addEventListener('click', () => {
+    deleteTask(task.id);
+    render();
+});
+
+li.appendChild(checkbox);
+li.appendChild(span);
+li.appendChild(deleteButton);
+list.appendChild(li);
     });
 }
 
